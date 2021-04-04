@@ -14,23 +14,23 @@ booksRouter = APIRouter(
 bookDao = BookDao()
 
 
-@booksRouter.get("/", response_model=List[book_dto.BookDto])
+@booksRouter.get("/", response_model=List[book_dto.BookDtoOut])
 def findAll(db: Session = Depends(get_db)):
     return bookDao.findAll(db)
 
 
-@booksRouter.get("/{book_id}", response_model=book_dto.BookDto)
+@booksRouter.get("/{book_id}", response_model=book_dto.BookDtoOut)
 def findOne(book_id: int, db: Session = Depends(get_db)):
     return bookDao.findOne(book_id, db)
 
 
-@booksRouter.post("/", response_model=book_dto.BookDto)
-def create(book: book_dto.BookDto, db: Session = Depends(get_db)):
+@booksRouter.post("/", response_model=book_dto.BookDtoOut)
+def create(book: book_dto.BookDtoIn, db: Session = Depends(get_db)):
     return bookDao.create(book, db)
 
 
-@booksRouter.put("/{book_id}", response_model=book_dto.BookDto)
-def update(book_id: int, book: book_dto.BookDto, db: Session = Depends(get_db)):
+@booksRouter.put("/{book_id}", response_model=book_dto.BookDtoOut)
+def update(book_id: int, book: book_dto.BookDtoIn, db: Session = Depends(get_db)):
     return bookDao.update(book_id, book, db)
 
 

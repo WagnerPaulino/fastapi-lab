@@ -19,5 +19,5 @@ class Book(Base):
     description: str = Column(String, nullable=True)
     price: float = Column(Float, nullable=False)
     tax: float = Column(Float, nullable=True)
-    author_id: int = Column(Integer, ForeignKey("author.id"))
+    author_id: int = Column(Integer, ForeignKey("author.id"), nullable=False)
     author = relationship("Author", back_populates="books")
