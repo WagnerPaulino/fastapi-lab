@@ -1,10 +1,7 @@
-from typing import Optional
-
 from pydantic import BaseModel
 
 
 class UserDtoIn(BaseModel):
-    id: Optional[int]
     username: str
     password: str
 

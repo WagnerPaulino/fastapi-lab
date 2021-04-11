@@ -1,10 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
-
-from config.auth_config import oauth2_scheme
 from config.database_config import get_db
 from dao.user_dao import UserDao
 from dto.user_dto import UserDtoIn, UserDtoOut
+from service.auth_service import get_current_user
 
 authRouter = APIRouter(
     prefix="/auth",
@@ -14,20 +13,14 @@ authRouter = APIRouter(
 userDao = UserDao()
 
 
+@authRouter.post('/register')
+async def sign_on(user: UserDtoIn, session=Depends(get_db)):
+    return userDao.create(user, session)
+
+
 @authRouter.post('/token')
 async def token(form_data: OAuth2PasswordRequestForm = Depends()):
     return {'access_token': form_data.username}
-
-
-async def get_current_user(token: str = Depends(oauth2_scheme), session=Depends(get_db)):
-    user = userDao.findOneByUsername(token, session)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    return user
 
 
 @authRouter.get("/users/me", response_model=UserDtoOut)
