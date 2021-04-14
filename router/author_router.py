@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends
 from typing import List
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from config.database_config import get_db
