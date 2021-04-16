@@ -2,7 +2,13 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from . import author_dto
+
+class InnerBookAuthorDto(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
 
 
 class BookDtoIn(BaseModel):
@@ -22,8 +28,7 @@ class BookDtoOut(BaseModel):
     description: Optional[str]
     price: float
     tax: Optional[float]
-    author_id: int
-    author: Optional[author_dto.AuthorDtoIn]
+    author: InnerBookAuthorDto
 
     class Config:
         orm_mode = True
