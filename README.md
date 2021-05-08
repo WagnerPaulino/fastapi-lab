@@ -16,6 +16,11 @@ $ kubectl apply -f deployment.yml
 $ kubectl expose deployment fastapi-lab-deployment --type NodePort
 ```
 
+* To see ip and port
+```
+kubectl get service
+```
+
 * to delete
 ```bash
 $ kubectl delete deploy fastapi-lab-deployment
