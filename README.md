@@ -12,18 +12,17 @@
 ```bash
 $ eval $(minikube docker-env)
 $ docker build -t fastapi-lab .
-$ kubectl apply -f deployment.yml
-$ kubectl expose deployment fastapi-lab-deployment --type NodePort
+$ kubectl create -f deployment.yml && kubectl create -f service.yml
 ```
 
 * To see ip and port
 ```
-kubectl get service
+$ kubectl get service
 ```
 
 * to delete
 ```bash
-$ kubectl delete deploy fastapi-lab-deployment
+$ kubectl delete deploy fastapi-lab-deployment && kubectl delete service fastapi-lab-service
 ```
 
 * Access `http://localhost:8000/docs`

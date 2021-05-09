@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-lab-service
+  labels:
+    app: fastapi-lab
+spec:
+  ports:
+  - nodePort: 30500
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: fastapi-lab
+  type: NodePort
