@@ -12,7 +12,7 @@
 ```bash
 $ eval $(minikube docker-env)
 $ docker build -t fastapi-lab .
-$ kubectl create -f deployment.yml && kubectl create -f service.yml
+$ kubectl apply -f deployment.yml && kubectl apply -f service.yml
 ```
 
 * To see ip and port

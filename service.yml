@@ -6,10 +6,9 @@ metadata:
     app: fastapi-lab
 spec:
   ports:
-  - nodePort: 30500
-    port: 8000
+  - port: 6000
     protocol: TCP
     targetPort: 8000
   selector:
     app: fastapi-lab
-  type: NodePort
+  type: LoadBalancer
