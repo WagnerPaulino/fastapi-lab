@@ -4,7 +4,8 @@
 
 * Execute with docker
 ```bash
-./run.sh
+$ chmod +x run.sh
+$ ./run.sh
 ```
 
 
@@ -18,6 +19,16 @@ $ kubectl apply -f deployment.yml && kubectl apply -f service.yml
 * To see ip and port
 ```
 $ kubectl get service
+```
+
+* If you're using minikube
+```bash
+$ minikube tunnel
+```
+
+* In other terminal 
+```bash
+$ minikube service fastapi-lab-service
 ```
 
 * to delete
