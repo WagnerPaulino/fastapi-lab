@@ -37,3 +37,8 @@ $ kubectl delete deploy fastapi-lab-deployment && kubectl delete service fastapi
 ```
 
 * Access `http://localhost:8000/docs`
+
+* Run postgres
+```
+docker run -p 5432:5432 --network host -e POSTGRES_USER="admin" -e POSTGRES_PASSWORD="1" -e POSTGRES_DB="test" --name postgres postgres
+```
